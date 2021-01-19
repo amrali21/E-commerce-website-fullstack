@@ -1,0 +1,9 @@
+.product-image{
+    max-height: 270px; max-width: 270px;
+}
+
+.product-image-small{
+    max-height: 78px; max-width: 59px;
+} 
+
+/* there needs to be an area where the image is centered */
