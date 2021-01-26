@@ -28,8 +28,7 @@ const auth = (req, res, next) => {
         }                        // [NEW] this means that a wrong cookie exists (we had logged out)
           else
           {      // here you should redirect.
-          res.redirect('/login')
-          //res.send('failed to authenticate')
+          next();
           }
     
         })
@@ -38,7 +37,8 @@ const auth = (req, res, next) => {
         catch(e){                           // [NEW] this means no cookie exists (we've never logged in before)
         console.log('accessing protected page, authentication token to compare in db: ', token);
         console.log( e +'caught!!')
-          res.redirect('/login')
+        next();
+          
         }
     
         

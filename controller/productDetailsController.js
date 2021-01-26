@@ -1,48 +1,30 @@
 const connection = require('../database/db_connection')
+const queries = require('../database/queries');
 
 
+const product_details2 = (req, res) => {
 
+  (async function(){   var product_id = req.params.product_id;
 
-const product_details =  (req, res) => {
+    let product_data = await queries.product_data(product_id)
   
-
-    var product_id = req.params.product_id;
-   
-  connection.query(`SELECT product_name, retail_price, description, image FROM products WHERE product_id = "${product_id}"`, function (error, results, fields) {
-    if (error) {
-      console.log("we got an errror");
-      throw error;
+    if(req.user_id){
+      let user_data = await queries.user_data(req.user_id)
+      res.render('product_details.ejs', {name: product_data.name, price: product_data.price, descrition: product_data.description, images: product_data.images, product_id: product_data.product_id, username: user_data.username, total_price: user_data.total_price, no_of_items: user_data.no_of_items})
     }
-    
-  // QUERY result:
-    var name = results[0].product_name; price = results[0].retail_price; description= results[0].description; images = results[0].image;
-   
-  
-    // images string TO image array
-   var imagesArr = getUrlArray(images)
-  for(var i =0; i < imagesArr.length; i++){           
-    imagesArr[i] = imagesArr[i].split('"')[1]    // gets the string between double quotations.
-  }
-  
-  
-    res.render('product_details.ejs', {name: name, price: price, descrition: description, images: imagesArr, product_id: product_id} )
-  
-  });
-   
-    }
+    else{
+      res.render('product_details.ejs',  {name: product_data.name, price: product_data.price, descrition: product_data.description, images: product_data.images, product_id: product_data.product_id, username: 'guest', total_price: undefined, no_of_items: undefined})
+    } })();
 
-    function getUrlArray(imgURLs){   // GIVEN URLs STRING,  RETURN URL ARRAY
-        var mySubString = imgURLs.substring(
-          imgURLs.lastIndexOf("[") + 1, 
-          imgURLs.lastIndexOf("]")
-        );
-        
-        return mySubString.split(',');
-      }
+}
+
+
+
+ 
     
 
     module.exports = {
         
-        product_details
+         product_details2
     }
 

@@ -2,7 +2,7 @@
 <div id="sidebar" class="span3">
 
     <% if(username != 'guest') { %>
-    <div class="well well-small"><a id="myCart" href="product_summary.html"><img src="themes/images/ico-cart.png" alt="cart"><%= no_of_items %> Items in your cart  <span class="badge badge-warning pull-right"><%= total_price %> INR</span></a></div>
+    <div class="well well-small"><a id="myCart" onclick="window.location.href='../product_summary';"><img src="../themes/images/ico-cart.png" alt="cart"><%= no_of_items %> Items in your cart  <span class="badge badge-warning pull-right"><%= total_price %> INR</span></a></div>
     <% } %>
     <ul id="sideManu" class="nav nav-tabs nav-stacked">
         <li class="subMenu open"><a> ELECTRONICS [230]</a>
@@ -42,21 +42,21 @@
     </ul>
     <br/>
       <div class="thumbnail">
-        <img src="themes/images/products/panasonic.jpg" alt="Bootshop panasonoc New camera"/>
+        <img src="../themes/images/products/panasonic.jpg" alt="Bootshop panasonoc New camera"/>
         <div class="caption">
           <h5>Panasonic</h5>
             <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
         </div>
       </div><br/>
         <div class="thumbnail">
-            <img src="themes/images/products/kindle.png" title="Bootshop New Kindel" alt="Bootshop Kindel">
+            <img src="../themes/images/products/kindle.png" title="Bootshop New Kindel" alt="Bootshop Kindel">
             <div class="caption">
               <h5>Kindle</h5>
                 <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
             </div>
           </div><br/>
         <div class="thumbnail">
-            <img src="themes/images/payment_methods.png" title="Bootshop Payment Methods" alt="Payments Methods">
+            <img src="../themes/images/payment_methods.png" title="Bootshop Payment Methods" alt="Payments Methods">
             <div class="caption">
               <h5>Payment Methods</h5>
             </div>

@@ -48,7 +48,7 @@
 		<li><a href="index.html">Home</a> <span class="divider">/</span></li>
 		<li class="active"> SHOPPING CART</li>
     </ul>
-	<h3>  SHOPPING CART [ <small>3 Item(s) </small>]<a href="products.html" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>	
+	<h3>  SHOPPING CART [ <small>3 Item(s) </small>]<a  onclick="window.location.href='http://localhost:3000/home';" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>	
 	<hr class="soft"/>
 	
 			
@@ -65,70 +65,47 @@
 				</tr>
               </thead>
               <tbody>
+			<% var total_price = 0 %>
 		    <%  if(results) { %>
 			<%	for(var i = 0; i < results.length; i++){ %>
                 <tr>
-                  <td> <img width="60" src="themes/images/products/4.jpg" alt=""/></td>
+                  <td> <img width="60" style="max-height: 60px;" src="<%= results[i].image %>" alt=""/></td>
                   <td> <%= results[i].product_name %><br/>Color : black, Material : metal</td>
 				  <td>
 					<div class="input-append"><input value= "<%= results[i].amount %>" class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" type="text"><button class="btn" type="button"><i class="icon-minus"></i></button><button class="btn" type="button"><i class="icon-plus"></i></button><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button>				</div>
 				  </td>
                   <td><%= results[i].retail_price %></td>
-                  <td>$25.00</td>
-                  <td>$15.00</td>
+                  <td>N/A</td>
+                  <td>N/A</td>
                   <td><%= results[i].total_price %></td>
-                </tr>
+				</tr>
+				<% total_price += results[i].total_price %>
 			<%	} %>
 			<% } %>	
                 <tr>
                   <td colspan="6" style="text-align:right">Total Price:	</td>
-                  <td> $228.00</td>
+                  <td> <%= total_price %></td>
                 </tr>
 				 <tr>
                   <td colspan="6" style="text-align:right">Total Discount:	</td>
-                  <td> $50.00</td>
+                  <td> $10.00</td>
                 </tr>
                  <tr>
                   <td colspan="6" style="text-align:right">Total Tax:	</td>
-                  <td> $31.00</td>
+                  <td> $50.00</td>
                 </tr>
 				 <tr>
-                  <td colspan="6" style="text-align:right"><strong>TOTAL ($228 - $50 + $31) =</strong></td>
-                  <td class="label label-important" style="display:block"> <strong> $155.00 </strong></td>
+                  <td colspan="6" style="text-align:right"><strong>TOTAL (<%= total_price %> - $10 + $50) =</strong></td>
+                  <td class="label label-important" style="display:block"> <strong> <%= total_price - 10 + 50 %> </strong></td>
                 </tr>
 				</tbody>
             </table>
 		
 		
           
-			<table class="table table-bordered">
-			 <tr><th>ESTIMATE YOUR SHIPPING </th></tr>
-			 <tr> 
-			 <td>
-				<form class="form-horizontal">
-				  <div class="control-group">
-					<label class="control-label" for="inputCountry">Country </label>
-					<div class="controls">
-					  <input type="text" id="inputCountry" placeholder="Country">
-					</div>
-				  </div>
-				  <div class="control-group">
-					<label class="control-label" for="inputPost">Post Code/ Zipcode </label>
-					<div class="controls">
-					  <input type="text" id="inputPost" placeholder="Postcode">
-					</div>
-				  </div>
-				  <div class="control-group">
-					<div class="controls">
-					  <button type="submit" class="btn">ESTIMATE </button>
-					</div>
-				  </div>
-				</form>				  
-			  </td>
-			  </tr>
-            </table>		
-	<a href="products.html" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
-	<a href="localhost:3000/checkout" target="_blank" class="btn btn-large pull-right" >Next <i class="icon-arrow-right"></i></a>
+			
+	<a onclick="window.location.href='http://localhost:3000/home';" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
+	<a onclick="window.location.href='../checkout';" target="_blank" class="btn btn-large pull-right" >Next <i class="icon-arrow-right"></i></a>
 	
 </div>
 </div></div>

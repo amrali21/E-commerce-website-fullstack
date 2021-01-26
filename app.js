@@ -1,6 +1,5 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-var session = require('express-session')
 var cookieSession = require('cookie-session')
 var cookieParser = require('cookie-parser');
 
@@ -22,7 +21,7 @@ app.use(cookieSession({
 }))
 
 
-// rotutes
+// ROUTES
 const homeRoute = require('./routes/homeRoute')
 const productDetailsRoute = require('./routes/productDetailsRoute')
 const addToCartRoute = require('./routes/addToCartRoute')
@@ -30,21 +29,17 @@ const productSummaryRoute = require('./routes/productSummaryRoute')
 const checkoutRoute = require('./routes/checkoutRoute')
 const executePaymentRoute = require('./routes/executePaymentRoute')
 
-// users
 const login = require('./routes/users/login');
 const logout = require('./routes/users/logout');
 const register = require('./routes/users/register');
-const welcome = require('./routes/users/welcome');
 
 
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 
 
-//DB Connection
 
-
-// ROUTES
+// Express Router
 
 app.use(homeRoute);
 app.use(productDetailsRoute);
@@ -53,15 +48,11 @@ app.use(productSummaryRoute);
 app.use(checkoutRoute);
 app.use(executePaymentRoute);
 
-//users
 app.use(login);
 app.use(logout);
 app.use(register);
-app.use(welcome);
 
-app.get('/test2', (req, res) =>{
-  res.render('index2.ejs')
-})
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

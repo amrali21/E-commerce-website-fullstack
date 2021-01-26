@@ -14,7 +14,8 @@
 	-->
 	<!--<link rel="stylesheet/less" type="text/css" href="themes/less/bootshop.less">
 	<script src="themes/js/less.js" type="text/javascript"></script> -->
-	
+	<link href="themes/css/latest_products.css" rel="stylesheet" />
+
 <!-- Bootstrap style --> 
     <link id="callCss" rel="stylesheet" href="themes/bootshop/bootstrap.min.css" media="screen"/>
     <link href="themes/css/base.css" rel="stylesheet" media="screen"/>
@@ -285,24 +286,45 @@
 			  </div>
 		</div>
 		<h4>Latest Products </h4>
-			  <ul class="thumbnails">
-				  <% for(var i =0; i < results.length; i++){ %>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a  href="localhost:3000/product_details/<%= results[i].product_id %>"><img src="<%= images[i] %>" style="height:160px; width: 160px" alt=""/></a>
-					<div class="caption">
-					  <h5><%= results[i].product_name %></h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
-					  </p>
-					 
-					  <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#"><%= results[i].retail_price %></a></h4>
-					</div>
-				  </div>
-				</li>
-				<% } %>
-			  </ul>	
+ <!-- here!! erhe reh -->
+ <div class="content">
+	<!-- content here -->
+	<div class="product-grid product-grid--flexbox">
+		<div class="product-grid__wrapper">
+			<!-- Product list start here -->
 
+			<!-- Single product -->
+			<% for(var i =0; i < results.length; i++){ %>
+
+			<div class="product-grid__product-wrapper">
+				<div class="product-grid__product">
+					<div class="product-grid__img-wrapper">			
+				<a href= "localhost:3000/product_details/<%= results[i].product_id %>">		<img  src="<%= images[i] %>" alt="Img" class="product-grid__img" /> </a>
+					</div>
+					<span class="product-grid__title"><%= results[i].product_name %></span>
+					<span class="product-grid__price"><%= results[i].retail_price %>NR</span>
+					<div class="product-grid__extend-wrapper">
+						<div class="product-grid__extend">
+							<p class="product-grid__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
+							
+						<form id="cart-form" action="localhost:3000/add_to_cart" method="post" style="display: inline;">
+							<span onclick="console.log('fuck'); document.getElementById('cart-form').submit();" class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Add to cart</span>				
+							<input type="hidden" value="<%= results[i].product_id %>" name ="product_id">
+						   <input type="hidden" value="1" name ="amount">
+
+						</form>
+							<span class="product-grid__btn product-grid__view" onclick="window.location.href='product_details/<%= results[i].product_id %>';"><i class="fa fa-eye"></i> View more</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% } %>
+
+			<!-- end Single product -->
+		
+		</div>		
+	</div>
+</div>
 		</div>
 		</div>
 	</div>

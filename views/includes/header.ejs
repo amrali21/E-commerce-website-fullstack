@@ -1,20 +1,20 @@
 <div id="header">
     <div class="container">
     <div id="welcomeLine" class="row">
-        
+        <% if ( typeof username === 'undefined') { username = 'guest' } %>
         <div class="span6">Welcome!<strong> <%= username %></strong></div>
         
         <div class="span6">
         <%	if(username != 'guest') { %>
-    
+          
         <div class="pull-right">
-            <a href="product_summary.html"><span class="">Fr</span></a>
-            <a href="product_summary.html"><span class="">Es</span></a>
+            <a href="localhost:3000/product_summary"><span class="">Fr</span></a>
+            <a href="localhost:3000/product_summary"><span class="">Es</span></a>
             <span class="btn btn-mini">En</span>
-            <a href="product_summary.html"><span>&pound;</span></a>
-            <span class="btn btn-mini"><%= total_price %> INR</span>
-            <a href="product_summary.html"><span class="">$</span></a>
-            <a href="product_summary.html"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> <%= no_of_items %> Itemes in your cart </span> </a> 
+            <a href="localhost:3000/product_summary"><span>&pound;</span></a>
+            <span class="btn btn-mini" onclick="window.location.href='../product_summary';"><%= total_price %> INR</span>
+            <a href="localhost:3000/product_summary"><span class="">$</span></a>
+            <a onclick="window.location.href='../product_summary';"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> <%= no_of_items %> Itemes in your cart </span> </a> 
         </div>
         <% } %>
         </div>
@@ -27,7 +27,7 @@
         <span class="icon-bar"></span>
     </a>
       <div class="navbar-inner">
-        <a class="brand" href="index.html"><img src="themes/images/logo.png" alt="Bootsshop"/></a>
+        <a class="brand" onclick="window.location.href='../home';"><img src="../themes/images/logo.png" alt="Bootsshop"/></a>
             <form class="form-inline navbar-search" method="post" action="products.html" >
             <input id="srchFld" class="srchTxt" type="text" />
               <select class="srchTxt">
@@ -45,7 +45,8 @@
          <li class=""><a href="normal.html">Delivery</a></li>
          <li class=""><a href="contact.html">Contact</a></li>
          <li class="">
-         <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
+           <% if (username != 'guest') { var path = 'logout' } else { var path = 'login' } %>
+         <a onclick="window.location.href='../<%= path %>';" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success"><%= path %></span></a>
         <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -76,67 +77,4 @@
     </div>
     </div>
     <!-- Header End====================================================================== -->
-    <div id="carouselBlk">
-        <div id="myCarousel" class="carousel slide">
-            <div class="carousel-inner">
-              <div class="item active">
-              <div class="container">
-                <a href="register.html"><img style="width:100%" src="themes/images/carousel/1.png" alt="special offers"/></a>
-                <div class="carousel-caption">
-                      <h4>Second Thumbnail label</h4>
-                      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    </div>
-              </div>
-              </div>
-              <div class="item">
-              <div class="container">
-                <a href="register.html"><img style="width:100%" src="themes/images/carousel/2.png" alt=""/></a>
-                    <div class="carousel-caption">
-                      <h4>Second Thumbnail label</h4>
-                      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    </div>
-              </div>
-              </div>
-              <div class="item">
-              <div class="container">
-                <a href="register.html"><img src="themes/images/carousel/3.png" alt=""/></a>
-                <div class="carousel-caption">
-                      <h4>Second Thumbnail label</h4>
-                      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    </div>
-                
-              </div>
-              </div>
-               <div class="item">
-               <div class="container">
-                <a href="register.html"><img src="themes/images/carousel/4.png" alt=""/></a>
-                <div class="carousel-caption">
-                      <h4>Second Thumbnail label</h4>
-                      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    </div>
-               
-              </div>
-              </div>
-               <div class="item">
-               <div class="container">
-                <a href="register.html"><img src="themes/images/carousel/5.png" alt=""/></a>
-                <div class="carousel-caption">
-                      <h4>Second Thumbnail label</h4>
-                      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                </div>
-              </div>
-              </div>
-               <div class="item">
-               <div class="container">
-                <a href="register.html"><img src="themes/images/carousel/6.png" alt=""/></a>
-                <div class="carousel-caption">
-                      <h4>Second Thumbnail label</h4>
-                      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    </div>
-              </div>
-              </div>
-            </div>
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-          </div> 
-    </div>
+  

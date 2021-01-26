@@ -4,7 +4,7 @@ const controller = require('../controller/addToCartController')
 const auth = require('./authRoute').auth;
 
   
-router.post('/add_to_cart',auth ,controller.add_to_cart)
+router.post('/add_to_cart',auth ,controller.add_to_cart2)
 
   
  

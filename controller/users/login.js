@@ -19,8 +19,8 @@ const loginGetController = (req, res) => {        //DONE
       if (err) throw err;
       if(result[0])
       {
-      res.redirect('/welcome')
-    
+      res.redirect('/home')
+        
       }
       else
       {                     // if he's not logged in, show login page.
@@ -83,7 +83,7 @@ function generate_token(user_id, req, res, jwt){
         connection.query(sql, post, (err, result, fields) => {
           if(err) throw err;
       
-          res.redirect('/welcome');   // redirect to welcome (homepage) when u log in.
+          res.redirect('/home');   // redirect to welcome (homepage) when u log in.
       
         //  res.send('done')
       

@@ -1,13 +1,12 @@
 const connection = require('../../database/db_connection')
 
 const createOrder = require('./paypal_api/createOrder').createOrder;
-//const captureOrder = require('./paypal_api/captureOrder').captureOrder;
 
 
 const checkout =  (req, res) => {
   
-    // connection.connect();
     user_id = req.user_id;    // select total price, items: (price, name, quantity)
+   if(user_id) { // if user is logged in.
     connection.query(`select product_name, retail_price, amount, retail_price*amount AS total_price from user_cart, products where user_id = ${user_id} && user_cart.product_id = products.product_id`, function (error, results, fields) {
         if (error) {
           console.log("we got an errror");
@@ -29,27 +28,27 @@ const checkout =  (req, res) => {
             var paypal_data =  [ // we should pass this instead of purchaseUnits but we get an error.
               {
                   "amount": {
-                      "currency_code": "JPY",
+                      "currency_code": "USD",
                       "value": total_price + 40,
                       "breakdown": {
                           "item_total": {
-                              "currency_code": "JPY",
+                              "currency_code": "USD",
                               "value": total_price
                           },
                           "shipping": {
-                              "currency_code": "JPY",
+                              "currency_code": "USD",
                               "value": "20"
                           },
                           "handling": {
-                              "currency_code": "JPY",
+                              "currency_code": "USD",
                               "value": "10"
                           },
                           "tax_total": {
-                              "currency_code": "JPY",
+                              "currency_code": "USD",
                               "value": "20"
                           },
                           "shipping_discount": {
-                              "currency_code": "JPY",
+                              "currency_code": "USD",
                               "value": "10"
                           }
                       }
@@ -112,10 +111,13 @@ const checkout =  (req, res) => {
             x(res);
 
       }
-        //  console.log('no results for this user.');
-         // res.end();
   }
 )
+   }
+   else {
+       res.redirect('/login');
+   }
+
 }
 
 function newItem (product_name, retail_price, amount){
@@ -123,7 +125,7 @@ function newItem (product_name, retail_price, amount){
   "description": "filler description..",
   "sku": "some sku..",
   "unit_amount": {
-      "currency_code": "JPY",
+      "currency_code": "USD",
       "value": retail_price
   },
   "quantity": amount
